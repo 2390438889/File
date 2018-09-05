@@ -1,0 +1,49 @@
+用户信息
+配置个人的用户名称和电子邮件地址：
+$ git config --global user.name "runoob"
+$ git config --global user.email test@runoob.com
+
+文本编辑器
+设置Git默认使用的文本编辑器, 一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：:
+
+$ git config --global core.editor emacs
+
+差异分析工具
+还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具。比如要改用 vimdiff 的话：
+
+$ git config --global merge.tool vimdiff
+
+查看配置信息
+要检查已有的配置信息，可以使用 git config --list 命令：
+
+$ git config --list
+http.postbuffer=2M
+user.name=runoob
+user.email=test@runoob.com
+
+当对工作区修改（或新增）的文件执行 "git add" 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。
+
+当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。
+
+当执行 "git reset HEAD" 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。
+
+当执行 "git rm --cached <file>" 命令时，会直接从暂存区删除文件，工作区则不做出改变。
+
+当执行 "git checkout ." 或者 "git checkout -- <file>" 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。
+
+当执行 "git checkout HEAD ." 或者 "git checkout HEAD <file>" 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。
+
+git init
+Git 使用 git init 命令来初始化一个 Git 仓库，Git 的很多命令都需要在 Git 的仓库中运行，所以 git init 是使用 Git 的第一个命令。
+
+在执行完成 git init 命令后，Git 仓库会生成一个 .git 目录，该目录包含了资源的所有元数据，其他的项目目录保持不变（不像 SVN 会在每个子目录生成 .svn 目录，Git 只在仓库的根目录生成 .git 目录）。
+
+git clone
+我们使用 git clone 从现有 Git 仓库中拷贝项目（类似 svn checkout）。
+
+克隆仓库的命令格式为：
+
+git clone <repo>
+如果我们需要克隆到指定的目录，可以使用以下命令格式：
+
+git clone <repo> <directory>
